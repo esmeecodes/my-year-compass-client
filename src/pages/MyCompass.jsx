@@ -1,7 +1,25 @@
+import axios from "axios";
 import { useState } from "react";
 
 function MyCompass() {
-  const [year, setYear] = useState("2022");
+  const [compassTitle, setCompassTitle] = useState("");
+
+  const createCompass = async (e) => {
+    try {
+      const requestbody = {
+        compassTitle,
+        userId: user._id,
+      };
+
+      await axios.post(`${API_URL}/api/mycompasses`, requestbody, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      });
+
+      setResumeTitle("");
+    } catch (e) {
+      console.error("Error creating compass", e);
+    }
+  };
 
   return (
     <div>
@@ -10,15 +28,17 @@ function MyCompass() {
       filling out in the past.
       <h3>Create a new YearCompass</h3>
       <form>
-        <label>Year</label>
+        <label>Fill out the title of your compass</label>
         <input
           type="text"
-          name="year"
-          onChange={(e) => setYear(e.target.value)}
+          name="compassTitle"
+          onChange={(e) => setCompassTitle(e.target.value)}
           value={year}
         />
 
-        <button type="submit">Create New YearCompass</button>
+        <button type="submit" onClick={createCompass}>
+          Create YearCompass
+        </button>
       </form>
     </div>
   );
