@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { AuthContext } from "../context/auth.context.jsx";
 
 function Navbar() {
-  const { isLoggedIn, user } = useContext(AuthContext); // tap into the AuthContext to use the value from the Provider
+  const { isLoggedIn, user, logoutUser } = useContext(AuthContext); // tap into the AuthContext to use the value from the Provider
 
   return (
     <nav>
@@ -15,7 +15,8 @@ function Navbar() {
           <NavLink to="/my-compass/">
             <button>My Compass</button>
           </NavLink>
-          <button>Logout</button>
+          <button onClick={logoutUser}>Logout</button>
+          <span>{user && `hello ${user.username}!`}</span>
         </>
       )}
 

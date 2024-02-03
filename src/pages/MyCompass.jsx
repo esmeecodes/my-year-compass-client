@@ -4,6 +4,8 @@ import { useState } from "react";
 function MyCompass() {
   const [compassTitle, setCompassTitle] = useState("");
 
+  const storedToken = localStorage.getItem("authToken");
+
   const createCompass = async (e) => {
     try {
       const requestbody = {
@@ -15,7 +17,7 @@ function MyCompass() {
         headers: { Authorization: `Bearer ${storedToken}` },
       });
 
-      setResumeTitle("");
+      setCompassTitle("");
     } catch (e) {
       console.error("Error creating compass", e);
     }
@@ -33,7 +35,7 @@ function MyCompass() {
           type="text"
           name="compassTitle"
           onChange={(e) => setCompassTitle(e.target.value)}
-          value={year}
+          value={compassTitle}
         />
 
         <button type="submit" onClick={createCompass}>

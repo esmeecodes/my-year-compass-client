@@ -5,6 +5,8 @@ import Home from "./pages/Home";
 import MyCompass from "./pages/MyCompass";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import IsPrivate from "./components/IsPrivate";
+import IsAnonym from "./components/IsAnonym";
 
 function App() {
   return (
@@ -13,9 +15,30 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/my-compass/" element={<MyCompass />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/login" element={<Login />} />
+        <Route
+          path="/my-compass/"
+          element={
+            <IsPrivate>
+              <MyCompass />
+            </IsPrivate>
+          }
+        />
+        <Route
+          path="/signup"
+          element={
+            <IsAnonym>
+              <Signup />
+            </IsAnonym>
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <IsAnonym>
+              <Login />
+            </IsAnonym>
+          }
+        />
       </Routes>
     </div>
   );
