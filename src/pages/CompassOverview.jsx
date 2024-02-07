@@ -11,15 +11,63 @@ function CompassOverview() {
   const storedToken = localStorage.getItem("authToken");
   const navigate = useNavigate();
   const { compassId } = useParams();
+
+  const [compass, setCompass] = useState({
+    lastYearInMonths: "",
+    lastYearPersonal: "",
+    lastYearCareer: "",
+    lastYearFriends: "",
+    lastYearHobbies: "",
+    lastYearPhysical: "",
+    lastYearMental: "",
+    lastYearHabits: "",
+    lastYearsBetterTomorrow: "",
+  });
+
+  const getOneCompass = () => {
+    axios
+      .get(`${API_URL}/api/compass/overview/${compassId}`, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
+      .then((resp) => {
+        console.log("the compass is retrieved", resp);
+        setCompass(resp.data);
+      });
+  };
+
+  useEffect(() => {
+    getOneCompass();
+  }, []);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    console.log(name, value);
+    setCompass({
+      ...compass,
+      [name]: value,
+    });
+  };
+
   return (
     <div>
-      <h1>THIS IS THE COMPASS OVERVIEW COMPONENT</h1>
+      <h1>Compass Overview</h1>
       <p>
         These are the parts of your YearCompass:
-        <ul>
-          <li></li>
-          <li>The Year Ahead</li>
-        </ul>
+        <form className="yearcompassquestions">
+          <label>Going through your Calendar</label>
+          <p>
+            Go through last year’s calendar week by week. If you see an
+            important event, family gathering, friendly get-together or a
+            significant project, write it down here.
+          </p>
+          <input
+            type="text"
+            name="lastYearInMonths"
+            value={compass.lastYearInMonths}
+            onChange={handleInputChange}
+          ></input>
+        </form>
+        <button onClick={saveChanges}></button>
       </p>
     </div>
   );
