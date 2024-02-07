@@ -16,7 +16,6 @@ function Navbar() {
             <button>My Compass</button>
           </NavLink>
           <button onClick={logoutUser}>Logout</button>
-          <span>{user && `hello ${user.username}!`}</span>
         </>
       )}
 

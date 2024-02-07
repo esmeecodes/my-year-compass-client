@@ -14,14 +14,6 @@ function CompassOverview() {
 
   const [compass, setCompass] = useState({
     lastYearInMonths: "",
-    lastYearPersonal: "",
-    lastYearCareer: "",
-    lastYearFriends: "",
-    lastYearHobbies: "",
-    lastYearPhysical: "",
-    lastYearMental: "",
-    lastYearHabits: "",
-    lastYearsBetterTomorrow: "",
   });
 
   const getOneCompass = () => {
@@ -48,6 +40,20 @@ function CompassOverview() {
     });
   };
 
+  const saveChanges = (e) => {
+    const requestBody = {
+      lastYearInMonths: compass.lastYearInMonths,
+    };
+
+    axios
+      .put(`${API_URL}/api/compass/edit/${compassId}`, requestBody, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
+      .then((response) => {
+        console.log(`saved changes to ${requestBody}`);
+      });
+  };
+
   return (
     <div>
       <h1>Compass Overview</h1>
@@ -67,7 +73,7 @@ function CompassOverview() {
             onChange={handleInputChange}
           ></input>
         </form>
-        <button onClick={saveChanges}></button>
+        <button onClick={saveChanges}>save changes</button>
       </p>
     </div>
   );
