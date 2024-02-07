@@ -7,6 +7,8 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import IsPrivate from "./components/IsPrivate";
 import IsAnonym from "./components/IsAnonym";
+import CompassOverview from "./pages/CompassOverview";
+import ThePastYear from "./pages/ThePastYear";
 
 function App() {
   return (
@@ -20,6 +22,14 @@ function App() {
           element={
             <IsPrivate>
               <MyCompass />
+            </IsPrivate>
+          }
+        />
+        <Route
+          path="/compass/overview/:compassId"
+          element={
+            <IsPrivate>
+              <CompassOverview />
             </IsPrivate>
           }
         />

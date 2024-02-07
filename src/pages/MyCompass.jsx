@@ -1,6 +1,8 @@
 import axios from "axios";
 import { AuthContext } from "../context/auth.context";
 import { useState, useContext, useEffect } from "react";
+import CreateCompass from "../components/CreateCompass";
+import { NavLink } from "react-router-dom";
 
 const API_URL = "http://localhost:5005";
 
@@ -12,6 +14,10 @@ function MyCompass() {
   console.log(storedToken);
   console.log(compassTitle);
 
+  const handleCompassTitleChange = (value) => {
+    setCompassTitle(value);
+  };
+
   const createCompass = async (e) => {
     try {
       const requestBody = {
@@ -22,7 +28,7 @@ function MyCompass() {
       await axios.post(`${API_URL}/api/mycompasses`, requestBody, {
         headers: { Authorization: `Bearer ${storedToken}` },
       });
-      getAllResumes();
+      getAllCompasses();
       setCompassTitle("");
     } catch (e) {
       console.error("Error creating compass", e);
@@ -58,32 +64,37 @@ function MyCompass() {
           dreaming, planning, and preparing to get the most out of the new year.
         </p>
         <h3>Create a new YearCompass</h3>
-        <form>
-          <label>Fill out the title of your compass</label>
-          <input
-            type="text"
-            name="compassTitle"
-            onChange={(e) => setCompassTitle(e.target.value)}
-            value={compassTitle}
+        <div>
+          <CreateCompass
+            compassTitle={compassTitle}
+            onCompassTitleChange={handleCompassTitleChange}
           />
 
           <button type="submit" onClick={createCompass}>
             Create YearCompass
           </button>
-        </form>
-      </div>
-      <div className="your-compasses">
-        {compasses &&
-          compasses.map((compass) => {
-            return (
-              <div>
-                <h2>Your Compasses</h2>
-                <div key={compass._id} className="compass-card">
-                  <h3 className="compass-card-title">{compass.compassTitle}</h3>
+        </div>
+        <div className="your-compasses">
+          <h2>Your Compasses</h2>
+          {compasses &&
+            compasses.map((compass) => {
+              return (
+                <div>
+                  <div key={compass._id} className="compass-card">
+                    <h3 className="compass-card-title">
+                      {compass.compassTitle}
+                    </h3>
+                    <NavLink
+                      to={`/compass/overview/${compass._id}`}
+                      className="btn-to-compass"
+                    >
+                      Edit this compass
+                    </NavLink>
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+        </div>
       </div>
     </div>
   );
