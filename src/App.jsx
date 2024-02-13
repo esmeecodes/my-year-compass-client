@@ -8,7 +8,7 @@ import Signup from "./pages/Signup";
 import IsPrivate from "./components/IsPrivate";
 import IsAnonym from "./components/IsAnonym";
 import CompassOverview from "./pages/CompassOverview";
-import ThePastYear from "./pages/ThePastYear";
+import Account from "./pages/Account";
 
 function App() {
   return (
@@ -30,6 +30,14 @@ function App() {
           element={
             <IsPrivate>
               <CompassOverview />
+            </IsPrivate>
+          }
+        />
+        <Route
+          path="/account"
+          element={
+            <IsPrivate>
+              <Account />
             </IsPrivate>
           }
         />

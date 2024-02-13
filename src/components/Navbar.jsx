@@ -15,6 +15,9 @@ function Navbar() {
           <NavLink to="/my-compass/">
             <button>My Compass</button>
           </NavLink>
+          <NavLink to="/account/">
+            <button>Account</button>
+          </NavLink>
           <button onClick={logoutUser}>Logout</button>
         </>
       )}
