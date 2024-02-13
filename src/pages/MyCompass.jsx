@@ -49,6 +49,28 @@ function MyCompass() {
     }
   };
 
+  const deleteCompass = async (compassId) => {
+    const secureDelete = confirm("Are you sure you want to delete?");
+
+    if (!secureDelete) {
+      console.log("compass is not deleted");
+      return;
+    }
+
+    try {
+      await axios.delete(`${API_URL}/api/compass/delete/${compassId}`, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      });
+
+      const updatedCompasses = compasses.filter(
+        (compass) => compass._id !== compassId
+      );
+      setCompasses(updatedCompasses);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     getAllCompasses();
   }, [user.id]);
@@ -56,22 +78,20 @@ function MyCompass() {
   return (
     <div className="userpage">
       <div className="create-compass">
-        <h2>These are your YearCompasses, {user.username}!</h2>
-        <p>Here you can create your own YearCompass.</p>
+        <h2>Hello {user.username}!</h2>
         <p>
-          Review, learn from, and celebrate the year you’re leaving behind.
-          After that, your YearCompass is all about the future. You’ll be
-          dreaming, planning, and preparing to get the most out of the new year.
+          Here you can create your own YearCompass. Review, learn from, and
+          celebrate the year you’re leaving behind. After that: dream, plan, and
+          prepare to get the most out of next year.
         </p>
-        <h3>Create a new YearCompass</h3>
+
         <div>
           <CreateCompass
             compassTitle={compassTitle}
             onCompassTitleChange={handleCompassTitleChange}
           />
-
           <button type="submit" onClick={createCompass}>
-            Create YearCompass
+            Create Compass
           </button>
         </div>
         <div className="your-compasses">
@@ -86,10 +106,16 @@ function MyCompass() {
                     </h3>
                     <NavLink
                       to={`/compass/overview/${compass._id}`}
-                      className="btn-to-compass"
+                      className="link-to-compass"
                     >
-                      Edit this compass
-                    </NavLink>
+                      open
+                    </NavLink>{" "}
+                    <button
+                      onClick={() => deleteCompass(compass._id)}
+                      id="link-to-delete"
+                    >
+                      delete
+                    </button>
                   </div>
                 </div>
               );

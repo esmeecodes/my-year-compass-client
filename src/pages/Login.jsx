@@ -39,19 +39,28 @@ function Login(props) {
     <div className="login-page">
       <h1>Login</h1>
 
-      <form onSubmit={handleLoginSubmit}>
-        <label>Email:</label>
-        <input type="email" name="email" value={email} onChange={handleEmail} />
-
-        <label>Password:</label>
+      <form onSubmit={handleLoginSubmit} className="form-login">
         <input
+          className="form-login-input"
+          type="email"
+          name="email"
+          value={email}
+          onChange={handleEmail}
+          placeholder="email"
+        />
+
+        <input
+          className="form-login-input"
           type="password"
           name="password"
           value={password}
           onChange={handlePassword}
+          placeholder="password"
         />
 
-        <button type="submit">Login</button>
+        <button type="submit" className="login-button">
+          Login
+        </button>
       </form>
       {errorMessage && <p className="error-message">{errorMessage}</p>}
 

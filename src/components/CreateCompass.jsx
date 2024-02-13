@@ -6,14 +6,15 @@ function CreateCompass(props) {
 
   return (
     <div>
-      <form className="create-yearcompass-form">
-        <label>Fill out the title of your compass</label>
+      <h2>Create a new YearCompass</h2>
+      <form className="form-create-yearcompass">
         <input
+          className="form-create-compass-input"
           type="text"
           name="compassTitle"
           onChange={handleCompassTitleChange}
           value={props.compassTitle}
-          placeholder="YearCompass title"
+          placeholder="Give your compass a title"
         />
       </form>
     </div>

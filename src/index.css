@@ -1,25 +1,22 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
+}
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+nav {
+  margin: 30px 0;
 }
 
 a {
-  font-weight: 500;
-  color: #646cff;
+  font-weight: 700;
+  color: #7278f9;
+  font-size: 14px;
+  text-decoration: none;
 }
 
 a:hover {
-  color: #535bf2;
+  color: #5e2b35;
 }
 
 body {
@@ -30,18 +27,44 @@ body {
   min-height: 100vh;
 }
 
+h1,
+h2,
+h3,
+p,
+button,
+a,
+input,
+textarea {
+  font-family: "Courier New", Courier, monospace;
+}
+
 h1 {
   font-size: 28px;
   font-weight: 700;
   text-align: center;
+  margin: 0;
 }
 
 h2 {
   font-size: 24px;
+  margin-bottom: 0;
+}
+
+h3 {
+  font-size: 16px;
+  font-weight: 400;
+  margin: 0;
 }
 
 p {
   font-size: 14px;
+  margin: 10px 0;
+}
+
+.subtitle {
+  font-size: 14px;
+  margin-top: 0;
+  font-weight: 500;
 }
 
 button {
@@ -51,17 +74,70 @@ button {
   margin: 5px 5px;
   font-size: 14px;
   font-weight: 500;
-  font-family: inherit;
-  background-color: #bb1885;
+  background-color: #b09383;
   cursor: pointer;
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: #5e2b35;
 }
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+
+.form-signup,
+.form-login,
+.form-create-yearcompass {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-signup-input,
+.form-login-input,
+.form-create-compass-input {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 5px 15px;
+  margin: 10px 5px;
+  text-align: center;
+}
+
+.signup-button,
+.login-button,
+.save-button {
+  margin: 30px 5px;
+  background-color: #b09383;
+}
+
+#link-to-delete {
+  border: none;
+  font-weight: 500;
+  background-color: transparent;
+  color: #7278f9;
+  padding: 0;
+  margin: 0 0 0 10px;
+}
+
+.compass-card {
+  border-radius: 8px;
+  /* border: 1px solid rgb(97, 97, 97); */
+  border: 1px solid transparent;
+  padding: 5px 15px;
+  margin: 5px 5px;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.yearcompassquestions {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-question-xxl-answer {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  background-color: rgb(241, 238, 235);
+  color: #213547;
+  padding: 20px 10px;
+  text-align: center;
+  min-width: 300px;
+  min-height: 420px;
 }
 
 @media (prefers-color-scheme: light) {
@@ -70,9 +146,19 @@ button:focus-visible {
     background-color: #ffffff;
   }
   a:hover {
-    color: #747bff;
+    color: #7278f9;
   }
-  button {
-    background-color: #23c8a7;
+
+  input {
+    background-color: rgb(241, 238, 235);
+  }
+
+  .compass-card {
+    border-radius: 8px;
+    /* border: 1px solid rgb(201, 201, 201); */
+    border: 1px solid transparent;
+    padding: 5px 15px;
+    margin: 5px 5px;
+    background-color: rgb(241, 238, 235);
   }
 }

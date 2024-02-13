@@ -5,9 +5,15 @@ import { AuthContext } from "../context/auth.context.jsx";
 
 function Home() {
   const { isLoggedIn, user, logoutUser } = useContext(AuthContext);
+  const today = new Date();
+  const year = today.getFullYear();
+  const lastYear = year - 1;
+
   return (
     <div>
-      <h1>Welcome to the Home page!</h1>
+      <h1>
+        YearCompass <br /> {lastYear} -{year}
+      </h1>
       <p>
         It’s a YearCompass—your very own YearCompass, to be exact. It helps you
         reflect on the past year and plan the next one. With a set of carefully
@@ -30,10 +36,10 @@ function Home() {
       {!isLoggedIn && (
         <>
           <NavLink to="/signup">
-            <button>Sign up</button>
+            <button className="signup-button">Sign up</button>
           </NavLink>
           <NavLink to="login">
-            <button>Log in</button>
+            <button className="login-button">Log in</button>
           </NavLink>
         </>
       )}
