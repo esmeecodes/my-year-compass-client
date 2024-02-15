@@ -13,6 +13,8 @@ a {
   color: #7278f9;
   font-size: 14px;
   text-decoration: none;
+
+  cursor: pointer;
 }
 
 a:hover {
@@ -82,16 +84,22 @@ button:hover {
   border-color: #5e2b35;
 }
 
+td {
+  padding: 0 20px;
+}
+
 .form-signup,
 .form-login,
-.form-create-yearcompass {
+.form-create-yearcompass,
+.form-change-account {
   display: flex;
   flex-direction: column;
 }
 
 .form-signup-input,
 .form-login-input,
-.form-create-compass-input {
+.form-create-compass-input,
+.new-email-input {
   border-radius: 8px;
   border: 1px solid transparent;
   padding: 5px 15px;

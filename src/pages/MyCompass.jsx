@@ -108,8 +108,14 @@ function MyCompass() {
                       to={`/compass/overview/${compass._id}`}
                       className="link-to-compass"
                     >
-                      open
+                      open history
                     </NavLink>{" "}
+                    {/* <NavLink
+                      to={`/compass/overview/${compass._id}`}
+                      className="link-to-compass"
+                    >
+                      open history
+                    </NavLink>{" "} */}
                     <button
                       onClick={() => deleteCompass(compass._id)}
                       id="link-to-delete"
