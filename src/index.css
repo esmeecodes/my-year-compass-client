@@ -88,6 +88,17 @@ td {
   padding: 0 20px;
 }
 
+.account-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.account-part {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 .form-signup,
 .form-login,
 .form-create-yearcompass,
@@ -96,10 +107,17 @@ td {
   flex-direction: column;
 }
 
+.form-change-account {
+  display: flex;
+  flex-direction: row;
+}
+
 .form-signup-input,
 .form-login-input,
 .form-create-compass-input,
-.new-email-input {
+.new-email-input,
+.new-username-input,
+.new-password-input {
   border-radius: 8px;
   border: 1px solid transparent;
   padding: 5px 15px;

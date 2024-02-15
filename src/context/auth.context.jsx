@@ -53,6 +53,8 @@ function AuthProviderWrapper(props) {
   const logoutUser = () => {
     removeToken();
     authenticateUser();
+    setUser(null);
+    setIsLoggedIn(false);
   };
 
   // log out the user means remove token & states van de user-authentication
@@ -67,6 +69,7 @@ function AuthProviderWrapper(props) {
         isLoggedIn,
         isLoading,
         user,
+        setUser,
         storeToken,
         authenticateUser,
         logoutUser,
