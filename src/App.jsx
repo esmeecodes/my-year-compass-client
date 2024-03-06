@@ -9,6 +9,7 @@ import IsPrivate from "./components/IsPrivate";
 import IsAnonym from "./components/IsAnonym";
 import CompassOverview from "./pages/CompassOverview";
 import Account from "./pages/Account";
+import ShowCompass from "./pages/ShowCompass";
 
 function App() {
   return (
@@ -30,6 +31,14 @@ function App() {
           element={
             <IsPrivate>
               <CompassOverview />
+            </IsPrivate>
+          }
+        />
+        <Route
+          path="/compass/show/:compassId"
+          element={
+            <IsPrivate>
+              <ShowCompass />
             </IsPrivate>
           }
         />

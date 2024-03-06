@@ -4,18 +4,21 @@ import { useState, useContext, useEffect } from "react";
 import CreateCompass from "../components/CreateCompass";
 import { NavLink } from "react-router-dom";
 
-const API_URL = "http://localhost:5005";
+const API_URL = import.meta.env.VITE_SERVER_URL;
 
 function MyCompass() {
   const [compassTitle, setCompassTitle] = useState("");
+  const [compassYear, setCompassYear] = useState("");
   const [compasses, setCompasses] = useState([]);
-  const { user, logOutUser } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const storedToken = localStorage.getItem("authToken");
-  console.log(storedToken);
-  console.log(compassTitle);
 
   const handleCompassTitleChange = (value) => {
     setCompassTitle(value);
+  };
+
+  const handleCompassYearChange = (value) => {
+    setCompassYear(value);
   };
 
   const createCompass = async (e) => {
@@ -23,6 +26,7 @@ function MyCompass() {
       const requestBody = {
         compassTitle,
         userId: user._id,
+        compassYear,
       };
 
       await axios.post(`${API_URL}/api/mycompasses`, requestBody, {
@@ -30,6 +34,7 @@ function MyCompass() {
       });
       getAllCompasses();
       setCompassTitle("");
+      setCompassYear("");
     } catch (e) {
       console.error("Error creating compass", e);
     }
@@ -89,6 +94,7 @@ function MyCompass() {
           <CreateCompass
             compassTitle={compassTitle}
             onCompassTitleChange={handleCompassTitleChange}
+            onCompassYearChange={handleCompassYearChange}
           />
           <button type="submit" onClick={createCompass}>
             Create Compass
@@ -108,14 +114,14 @@ function MyCompass() {
                       to={`/compass/overview/${compass._id}`}
                       className="link-to-compass"
                     >
-                      open history
+                      open & edit
                     </NavLink>{" "}
-                    {/* <NavLink
-                      to={`/compass/overview/${compass._id}`}
-                      className="link-to-compass"
+                    <NavLink
+                      to={`/compass/show/${compass._id}`}
+                      className="link-to-printview"
                     >
-                      open history
-                    </NavLink>{" "} */}
+                      print
+                    </NavLink>{" "}
                     <button
                       onClick={() => deleteCompass(compass._id)}
                       id="link-to-delete"
