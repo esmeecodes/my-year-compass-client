@@ -18,7 +18,7 @@ function Signup(props) {
 
   const handleSignupSubmit = (e) => {
     e.preventDefault();
-    const requestBody = { username, email, password };
+    const requestBody = { email, password, username };
 
     axios
       .post(`${API_URL}/auth/signup`, requestBody)
